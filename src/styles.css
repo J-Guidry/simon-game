@@ -1,0 +1,250 @@
+body{
+    background: gray;
+  }
+  
+  #game{
+    margin: 100px auto;
+    border: 10px solid #333;
+    background-color: #333;
+    border-radius: 50%;
+    height: 500px;
+    width: 500px;
+    padding: 30px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  #innerControls{
+    margin: 80px;
+    background-color: white;
+    border-radius: 50%;
+    height: 250px;
+    width: 250px;
+    padding: 30px;
+    overflow: hidden;
+    position: relative;
+    border: 10px solid #333;
+  }
+  
+  #name{
+    font-size: 42px;
+    text-align: center;
+  }
+  
+  .container{
+    display: inline-block;
+  }
+  
+  #scoreBox{
+    display: inline-block;
+    font-weight: bold;
+    font-size: 24px;
+    height: 40px;
+    width: 65px;
+    border: 3px solid #333;
+    border-radius: 10px;
+    color: red;
+    background-color: rgb(67,7,16);
+    margin: 35px 20px 0 20px;
+  }
+  
+  #scoreBox span{
+    display: inline-block;
+    position: relative;
+    font-size: 40px;
+    left: 20px;
+    bottom: 7px;
+  }
+  
+  #scoreLabel{
+    margin-left: 25px;
+  }
+  
+  /* #startBtn{
+    border-radius: 50%;
+    border: solid 5px #333;
+    height: 30px;
+    width: 30px;
+    margin: 25px 20px 0 0;
+    background: red;
+    display: inline-block;
+  } */
+
+  #start{
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    margin: 25px 20px 0 0;
+    background: red;
+    display: inline-block;
+  }
+  
+  /* #startBtn:active{
+    padding: 10px;
+    border-radius: 50%;
+    border: solid 5px #333;
+    height: 30px;
+    width: 30px;
+    margin: 25px 20px 0 0;
+    background: red;
+    display: inline-block;  
+  } */
+  #strict{
+    border-radius: 50%;
+    border: solid 5px #333;
+    height: 30px;
+    width: 30px;
+    margin: 25px 20px 0 0;
+    background: yellow;
+    display: inline-block;
+  }
+  
+  #strictLight{
+    border-radius: 50%;
+    border: solid 5px #333;
+    height: 10px;
+    width: 10px;
+    background: rgb(67,7,16);
+    margin-left: 8px;
+    position: relative;
+    top: 10px;
+  }
+  
+  #switchBox{
+    display: inline-block;
+    padding: 5px;
+    width: 70px;
+    height: 30px;
+    background-color: #333;
+    border-radius: 3px;
+    margin: 0 5px 0 5px;
+  }
+  
+  #onOffSwitch{
+    background: lightblue;
+    width: 20px;
+    height: 25px;
+    text-align: center;
+    margin-top: 3px;
+    border-radius: 4px;
+  
+  }
+  
+  #onLabel{
+    display: inline;
+  }
+  
+  #offLabel{
+    display: inline;
+  }
+  
+  #switchContainer{
+    display: inline-block;
+    margin-left: 50px;
+    margin-top: 20px;
+  }
+  
+  .red{
+    position: absolute;
+    background-color: red;
+    width: 50%;
+    height: 45%;
+    left: 55%;
+    right: 0%;
+    bottom: 50%;
+    top: 0%;
+  }
+  
+  .redHighlight{
+    position: absolute;
+    background-color: red;
+    opacity: 0.3;
+    width: 50%;
+    height: 45%;
+    left: 55%;
+    right: 0%;
+    bottom: 50%;
+    top: 0%;  
+  }
+  
+  .blue{
+    position: absolute;
+    background-color: blue;
+    width: 50%;
+    height: 50%;
+    left: 55%;
+    right: 0%;
+    bottom: 0%;
+    top: 55%;
+  }
+  
+  .blueHighlight{
+    position: absolute;
+    background-color: blue;
+    opacity: 0.3;
+    width: 50%;
+    height: 50%;
+    left: 55%;
+    right: 0%;
+    bottom: 0%;
+    top: 55%;    
+  }
+  .yellow{
+    position: absolute;
+    background-color: yellow;
+    width: 45%;
+    height: 50%;
+    left: 0;
+    right: 50%;
+    bottom: 0%;
+    top: 55%;
+  }
+  
+  
+  .yellowHighlight{
+    position: absolute;
+    background-color: yellow;
+    opacity: 0.3;
+    width: 45%;
+    height: 50%;
+    left: 0;
+    right: 50%;
+    bottom: 0%;
+    top: 55%;   
+  }
+  
+  .green{
+    position: absolute;
+    background-color: green;
+    width: 45%;
+    height: 45%;
+    left: 0%;
+    right: 45%;
+    bottom: 50%;
+    top: 0%;
+  }
+  
+  
+  .greenHighlight{
+    position: absolute;
+    background-color: green;
+    opacity: 0.3;
+    width: 45%;
+    height: 45%;
+    left: 0%;
+    right: 45%;
+    bottom: 50%;
+    top: 0%;    
+  }
+  
+  #strictActive{
+    border-radius: 50%;
+    border: solid 5px #333;
+    height: 10px;
+    width: 10px;
+    background: red;
+    margin-left: 8px;
+    position: relative;
+    top: 10px;  
+  }
+  
