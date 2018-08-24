@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 export default class Colors extends React.Component{
     constructor(props){
@@ -10,11 +10,7 @@ export default class Colors extends React.Component{
     }
 
     onClick(e) {
-        
-        if(this.props.clickable === true){
-            e.preventDefault();
-            //console.log("toggled false from click");
-            this.props.toggleClickable();
+        if(this.props.start === true){
             this.props.toggleColor(e.target.className);
             this.checkUserInput(e.target.className);
         }
@@ -28,49 +24,33 @@ export default class Colors extends React.Component{
         let expectedColor = this.props.compSequence[this.state.playerInputCount];
 
         if(expectedColor === inputtedColor){
+            console.log(this.state.playerInputCount);
           this.setState({playerInputCount: this.state.playerInputCount = this.state.playerInputCount + 1});
+          console.log(this.state.playerInputCount);
           this.isTurnOver();
-
         } else {
-            this.mismatch();            
-        }
-        // if(this.props.clickable === false){
-            //  this.props.toggleClickable();
-        // }
-
-    }
-
-    isTurnOver(){
-        let allCorrect = this.props.compSequence.length === this.state.playerInputCount;
-        console.log(`all correct? ${allCorrect}`);
-        if(this.props.clickable === false || this.state.playerInputCount > 0){
-            this.props.toggleClickable();
-        }
-        if(allCorrect === true){
             this.resetPlayerInputCount();
-            this.nextOne();
+            this.props.playSequence();
         }
+    }
+  
+    isTurnOver(){
+      let allCorrect = this.props.compSequence.length === this.state.playerInputCount;
+      
+      if(allCorrect === true){
+          this.resetPlayerInputCount();
+          this.nextOne();
+      }
     }
 
     nextOne(){
         if(this.props.turnCount === 20){
-            this.youWon();
+            this.props.won();
         } else {
             this.props.increaseTurnCount();
             this.props.addToSequence();
             this.props.playSequence();
         }
-    }
-
-    mismatch(){
-        //play sound for mismatch
-        console.log("try again");
-        this.resetPlayerInputCount();
-        this.props.playSequence();
-    }
-
-    youWon(){
-        //flashing font in scorebox
     }
 
     render(){

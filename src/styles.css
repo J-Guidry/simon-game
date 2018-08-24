@@ -51,9 +51,9 @@ body{
   #scoreBox span{
     display: inline-block;
     position: relative;
-    font-size: 40px;
-    left: 20px;
-    bottom: 7px;
+    font-size: 30px;
+    margin-left: 30%;
+    margin-top: 3px;
   }
   
   #scoreLabel{

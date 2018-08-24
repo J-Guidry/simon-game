@@ -12,28 +12,25 @@ export default class Simon extends React.Component {
     constructor(props){
         super(props);
         this.turnOn = this.turnOn.bind(this);
-        this.startGame = this.startGame.bind(this);
         this.playSequence = this.playSequence.bind(this);
         this.toggleColor = this.toggleColor.bind(this);
         this.addRandomColorToSequence = this.addRandomColorToSequence.bind(this);
         this.increaseTurnCount = this.increaseTurnCount.bind(this);
-        this.toggleClickable = this.toggleClickable.bind(this);
+        this.youWon = this.youWon.bind(this);
         this.state = {
             start: false,
             turnCount: 0,
             compSequence: [],
-            class: ["red", "blue", "yellow", "green"],
-            clickable: false
+            class: ["red", "blue", "yellow", "green"]
         }
     }
 
     turnOn () {
         if(this.state.start === true){
             this.setState({start: !this.state.start,
-                           turnCount: this.state.turnCount = 0,
-                           compSequence: this.state.compSequence = [],
-                           class: ["red", "blue", "yellow", "green"],
-                           clickable: false
+                           turnCount: 0,
+                           compSequence: [],
+                           class: ["red", "blue", "yellow", "green"]
                            });
           } else if(this.state.start === false){
             this.setState({start: !this.state.start});
@@ -54,12 +51,9 @@ export default class Simon extends React.Component {
     }
 
     increaseTurnCount(){
-        this.setState({turnCount: this.state.turnCount + 1});
+        this.setState({turnCount: this.state.turnCount+1});
     }
 
-    toggleClickable(){
-        this.setState({ clickable: this.state.clickable = !this.state.clickable});
-    }
     playSequence() {
         let i = 0;
         let sequence = setInterval(()=>{
@@ -69,9 +63,6 @@ export default class Simon extends React.Component {
                 clearInterval(sequence);    
             }
         }, 1000);
-        if(this.state.clickable === false){
-            this.toggleClickable();
-        }
     }
 
     toggleColor(btnClass){
@@ -90,14 +81,17 @@ export default class Simon extends React.Component {
         }, 500);
     }
 
+    youWon(){
+        this.setState({turnCount: "W"});
+    }
+
     render(){
         return (
             <div id="game">
-                <Colors clickable={this.state.clickable} toggleColor={this.toggleColor} class={this.state.class} 
+                <Colors toggleColor={this.toggleColor} class={this.state.class} 
                     compSequence={this.state.compSequence} turnCount={this.state.turnCount} 
                     playSequence={this.playSequence} addToSequence={this.addRandomColorToSequence}
-                    increaseTurnCount={this.increaseTurnCount} toggleClickable={this.toggleClickable}
-                    sequencePlayed={this.state.sequencePlayed}/>
+                    increaseTurnCount={this.increaseTurnCount} start={this.state.start} won={this.youWon}/>
                 <div id="innerControls">
                     <Title />
                     <ScoreBox turnCount={this.state.turnCount} start={this.state.start}/>
