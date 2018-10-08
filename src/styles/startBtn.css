@@ -1,0 +1,16 @@
+#start{
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#startBtn{
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    background: red;
+    display: inline-block;
+  }
+
+  #startLabel{
+    margin-top: 10px;
+  }

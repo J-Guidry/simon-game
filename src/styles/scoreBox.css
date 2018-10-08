@@ -1,0 +1,27 @@
+#scoreBox{
+    display: inline-block;
+    font-weight: bold;
+    font-size: 24px;
+    height: 40px;
+    width: 65px;
+    border: 3px solid #333;
+    border-radius: 10px;
+    color: red;
+    background-color: rgb(67,7,16);
+    margin: 35px 20px 0 20px;
+  }
+  
+  #scoreBox span{
+    display: inline-block;
+    position: relative;
+    font-size: 30px;
+    margin-left: 30%;
+    margin-top: 3px;
+  }
+  
+  #scoreLabel{
+    margin-top: 10px;
+    color: black;
+    font-size: 1rem;
+    font-weight: normal;
+  }

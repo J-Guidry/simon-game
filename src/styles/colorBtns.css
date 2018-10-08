@@ -1,0 +1,97 @@
+  
+  .red{
+    position: absolute;
+    background-color: red;
+    width: 50%;
+    height: 45%;
+    left: 55%;
+    right: 0%;
+    bottom: 50%;
+    top: 0%;
+    cursor: pointer;
+  }
+  
+  .redHighlight{
+    position: absolute;
+    background-color: red;
+    opacity: 0.3;
+    width: 50%;
+    height: 45%;
+    left: 55%;
+    right: 0%;
+    bottom: 50%;
+    top: 0%;  
+  }
+  
+  .blue{
+    position: absolute;
+    background-color: blue;
+    width: 50%;
+    height: 50%;
+    left: 55%;
+    right: 0%;
+    bottom: 0%;
+    top: 55%;
+    cursor: pointer;
+  }
+  
+  .blueHighlight{
+    position: absolute;
+    background-color: blue;
+    opacity: 0.3;
+    width: 50%;
+    height: 50%;
+    left: 55%;
+    right: 0%;
+    bottom: 0%;
+    top: 55%;    
+  }
+  .yellow{
+    position: absolute;
+    background-color: yellow;
+    width: 45%;
+    height: 50%;
+    left: 0;
+    right: 50%;
+    bottom: 0%;
+    top: 55%;
+    cursor: pointer;
+  }
+  
+  
+  .yellowHighlight{
+    position: absolute;
+    background-color: yellow;
+    opacity: 0.3;
+    width: 45%;
+    height: 50%;
+    left: 0;
+    right: 50%;
+    bottom: 0%;
+    top: 55%;   
+  }
+  
+  .green{
+    position: absolute;
+    background-color: green;
+    width: 45%;
+    height: 45%;
+    left: 0%;
+    right: 45%;
+    bottom: 50%;
+    top: 0%;
+    cursor: pointer;
+  }
+  
+  
+  .greenHighlight{
+    position: absolute;
+    background-color: green;
+    opacity: 0.3;
+    width: 45%;
+    height: 45%;
+    left: 0%;
+    right: 45%;
+    bottom: 50%;
+    top: 0%;    
+  }

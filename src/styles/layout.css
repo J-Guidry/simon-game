@@ -1,0 +1,39 @@
+body{
+    background: gray;
+  }
+  
+  #game{
+    margin: 100px auto;
+    border: 10px solid #333;
+    background-color: #333;
+    border-radius: 50%;
+    height: 500px;
+    width: 500px;
+    padding: 30px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  #innerControls{
+    margin: 80px;
+    background-color: white;
+    border-radius: 50%;
+    height: 250px;
+    width: 250px;
+    padding: 30px;
+    overflow: hidden;
+    position: relative;
+    border: 10px solid #333;
+  }
+  
+  .container{
+    display: inline-block;
+    margin-top: 25px;
+  }
+
+  #name{
+    font-size: 42px;
+    text-align: center;
+  }
+  
+
