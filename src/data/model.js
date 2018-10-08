@@ -1,7 +1,6 @@
 
  
  export const model = {
-    strict: false,
     colors: ["red", "blue", "green", "yellow"],
     chooseRandomColor: function() {
       return Math.floor(Math.random() * this.colors.length); 

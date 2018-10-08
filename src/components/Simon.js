@@ -2,6 +2,7 @@ import React from "react";
 import Title from "./Title";
 import ScoreBox from "./ScoreBox";
 import StartBtn from "./StartBtn";
+import StrictBtn from "./StrictBtn";
 import { model } from "../data/model";
 import Colors from "./Colors";
 import update from "immutability-helper";
@@ -22,6 +23,7 @@ export default class Simon extends React.Component {
         this.state = {
             start: false,
             turnCount: 0,
+            strict: false,
             compSequence: [],
             class: ["red", "blue", "yellow", "green"],
             disabledButton: true,
@@ -41,6 +43,10 @@ export default class Simon extends React.Component {
             this.setState({start: !this.state.start});
             this.startGame();
           }
+    }
+
+    toggleStrict(){
+        this.setState(prevState => ({strict: !prevState.strict}));
     }
 
     startGame() {
@@ -122,8 +128,12 @@ export default class Simon extends React.Component {
                     return={this.returnIfDisabled}/>
                 <div id="innerControls">
                     <Title />
-                    <ScoreBox turnCount={this.state.turnCount} start={this.state.start}/>
-                    <StartBtn onClick={this.turnOn}/>
+                    <div className="container">
+                        <ScoreBox turnCount={this.state.turnCount} start={this.state.start}/>
+                        <StartBtn onClick={this.turnOn}/>
+                        <StrictBtn onClick={this.toggleStrict}/> 
+                    </div>
+                   
                 </div>
             </div>            
         )
