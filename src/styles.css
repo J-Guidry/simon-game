@@ -153,6 +153,7 @@ body{
     right: 0%;
     bottom: 50%;
     top: 0%;
+    cursor: pointer;
   }
   
   .redHighlight{
@@ -176,6 +177,7 @@ body{
     right: 0%;
     bottom: 0%;
     top: 55%;
+    cursor: pointer;
   }
   
   .blueHighlight{
@@ -198,6 +200,7 @@ body{
     right: 50%;
     bottom: 0%;
     top: 55%;
+    cursor: pointer;
   }
   
   
@@ -222,6 +225,7 @@ body{
     right: 45%;
     bottom: 50%;
     top: 0%;
+    cursor: pointer;
   }
   
   

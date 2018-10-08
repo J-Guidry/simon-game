@@ -17,11 +17,15 @@ export default class Simon extends React.Component {
         this.addRandomColorToSequence = this.addRandomColorToSequence.bind(this);
         this.increaseTurnCount = this.increaseTurnCount.bind(this);
         this.youWon = this.youWon.bind(this);
+        this.itsNotYourTurn = this.itsNotYourTurn.bind(this);
+        this.returnIfDisabled = this.returnIfDisabled.bind(this);
         this.state = {
             start: false,
             turnCount: 0,
             compSequence: [],
-            class: ["red", "blue", "yellow", "green"]
+            class: ["red", "blue", "yellow", "green"],
+            disabledButton: true,
+            yourTurn: false
         }
     }
 
@@ -30,7 +34,8 @@ export default class Simon extends React.Component {
             this.setState({start: !this.state.start,
                            turnCount: 0,
                            compSequence: [],
-                           class: ["red", "blue", "yellow", "green"]
+                           class: ["red", "blue", "yellow", "green"],
+                           disabledButton: true
                            });
           } else if(this.state.start === false){
             this.setState({start: !this.state.start});
@@ -42,6 +47,7 @@ export default class Simon extends React.Component {
        this.addRandomColorToSequence();
        this.increaseTurnCount();
        this.playSequence(); 
+       this.itsYourTurn();
     }
 
     addRandomColorToSequence(){
@@ -55,20 +61,24 @@ export default class Simon extends React.Component {
     }
 
     playSequence() {
-        let i = 0;
-        let sequence = setInterval(()=>{
-            this.toggleColor(this.state.compSequence[i]);
-            i++;
-            if(i >= this.state.compSequence.length){
-                clearInterval(sequence);    
-            }
-        }, 1000);
+        this.setState({disabledButton: true, yourTurn: false}, ()=>{
+            let i = 0;
+            let sequence = setInterval(()=>{
+                this.toggleColor(this.state.compSequence[i]);
+                i++;
+                if(i >= this.state.compSequence.length){
+                    clearInterval(sequence);
+                    this.setState({disabledButton: false, yourTurn: true});    
+                }
+            }, 1000);
+        })
+
     }
 
     toggleColor(btnClass){
         this.setState({
             class: update(this.state.class, 
-            {$splice: [[this.state.class.indexOf(btnClass), 1, `${btnClass}Highlight`]]})
+            {$splice: [[this.state.class.indexOf(btnClass), 1, `${btnClass}Highlight`]]}, )
         });
         
         dataModel.sounds[btnClass].play();
@@ -79,19 +89,37 @@ export default class Simon extends React.Component {
                 {$splice: [[this.state.class.indexOf(`${btnClass}Highlight`), 1, btnClass]]})
             });
         }, 500);
+
+    }
+
+    returnIfDisabled(){
+        if(this.state.disabledButton === true ){
+            console.log("return");
+            return false;
+        } else {return true};
+    }
+
+    itsYourTurn(){
+        this.setState({yourTurn: true});
+    }
+
+    itsNotYourTurn(){
+        this.setState({yourTurn: false});
     }
 
     youWon(){
         this.setState({turnCount: "W"});
     }
-
+    
     render(){
         return (
             <div id="game">
                 <Colors toggleColor={this.toggleColor} class={this.state.class} 
                     compSequence={this.state.compSequence} turnCount={this.state.turnCount} 
                     playSequence={this.playSequence} addToSequence={this.addRandomColorToSequence}
-                    increaseTurnCount={this.increaseTurnCount} start={this.state.start} won={this.youWon}/>
+                    increaseTurnCount={this.increaseTurnCount} start={this.state.start} won={this.youWon}
+                    disabled={this.state.disabledButton} yourTurn={this.state.yourTurn} CPUTurn={this.itsNotYourTurn}
+                    return={this.returnIfDisabled}/>
                 <div id="innerControls">
                     <Title />
                     <ScoreBox turnCount={this.state.turnCount} start={this.state.start}/>
