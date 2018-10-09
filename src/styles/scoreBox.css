@@ -25,3 +25,33 @@
     font-size: 1rem;
     font-weight: normal;
   }
+
+  @media only screen and (max-width: 400px){
+    #scoreBox{
+      display: inline-block;
+      font-weight: bold;
+      font-size: 12px;
+      height: 20px;
+      width: 30px;
+      border: 3px solid #333;
+      border-radius: 5px;
+      color: red;
+      background-color: rgb(67,7,16);
+      margin: 17px 10px 0 5px;
+    }
+    
+    #scoreBox span{
+      display: inline-block;
+      position: relative;
+      font-size: 15px;
+      margin-left: 15%;
+      margin-top: 3px;
+    }
+    
+    #scoreLabel{
+      margin-top: 5px;
+      color: black;
+      font-size: 0.8rem;
+      font-weight: normal;
+    }
+  }

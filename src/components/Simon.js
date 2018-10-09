@@ -13,6 +13,7 @@ export default class Simon extends React.Component {
     constructor(props){
         super(props);
         this.turnOn = this.turnOn.bind(this);
+        this.toggleStrict = this.toggleStrict.bind(this);
         this.playSequence = this.playSequence.bind(this);
         this.toggleColor = this.toggleColor.bind(this);
         this.addRandomColorToSequence = this.addRandomColorToSequence.bind(this);
@@ -20,6 +21,7 @@ export default class Simon extends React.Component {
         this.youWon = this.youWon.bind(this);
         this.itsNotYourTurn = this.itsNotYourTurn.bind(this);
         this.returnIfDisabled = this.returnIfDisabled.bind(this);
+        this.resetGame = this.resetGame.bind(this);
         this.state = {
             start: false,
             turnCount: 0,
@@ -37,7 +39,8 @@ export default class Simon extends React.Component {
                            turnCount: 0,
                            compSequence: [],
                            class: ["red", "blue", "yellow", "green"],
-                           disabledButton: true
+                           disabledButton: true,
+                           yourTurn: false,
                            });
           } else if(this.state.start === false){
             this.setState({start: !this.state.start});
@@ -46,7 +49,8 @@ export default class Simon extends React.Component {
     }
 
     toggleStrict(){
-        this.setState(prevState => ({strict: !prevState.strict}));
+        this.setState((prevState) => ({strict: !prevState.strict})
+        )
     }
 
     startGame() {
@@ -56,6 +60,17 @@ export default class Simon extends React.Component {
        this.itsYourTurn();
     }
 
+    resetGame(){
+        this.setState(prevState => ({
+            turnCount: 0,
+            compSequence: [],
+            disabledButton: true,
+            yourTurn: false
+        }), ()=> {
+            this.startGame();        
+        });
+    }
+
     addRandomColorToSequence(){
         let randomColor;
         randomColor = dataModel.colors[dataModel.chooseRandomColor()];
@@ -63,44 +78,42 @@ export default class Simon extends React.Component {
     }
 
     increaseTurnCount(){
-        this.setState({turnCount: this.state.turnCount+1});
+        this.setState(prevState =>({turnCount: prevState.turnCount+1}));
     }
 
     playSequence() {
-        this.setState({disabledButton: true, yourTurn: false}, ()=>{
-            let i = 0;
-            let sequence = setInterval(()=>{
-                this.toggleColor(this.state.compSequence[i]);
-                i++;
-                if(i >= this.state.compSequence.length){
-                    clearInterval(sequence);
-                    this.setState({disabledButton: false, yourTurn: true});    
-                }
-            }, 1000);
-        })
-
-    }
+        this.setState({disabledButton: true, yourTurn: false}, 
+            ()=>{
+                let i = 0;
+                let sequence = setInterval(()=>{
+                    this.toggleColor(this.state.compSequence[i]);
+                    i++;
+                    if(i >= this.state.compSequence.length){
+                        clearInterval(sequence);
+                        this.setState({disabledButton: false, yourTurn: true});    
+                    }
+                }, 800);
+            }
+        )}
 
     toggleColor(btnClass){
         this.setState({
             class: update(this.state.class, 
-            {$splice: [[this.state.class.indexOf(btnClass), 1, `${btnClass}Highlight`]]}, )
+            {$splice: [[this.state.class.indexOf(btnClass), 1, `${btnClass}Highlight`]]})
+        }, ()=> {
+            dataModel.sounds[btnClass].play();
+            setTimeout(()=>{
+                 this.setState({
+                     class: update(this.state.class, 
+                     {$splice: [[this.state.class.indexOf(`${btnClass}Highlight`), 1, btnClass]]})
+                 });
+             }, 600);           
         });
-        
-        dataModel.sounds[btnClass].play();
-
-       setTimeout(()=>{
-            this.setState({
-                class: update(this.state.class, 
-                {$splice: [[this.state.class.indexOf(`${btnClass}Highlight`), 1, btnClass]]})
-            });
-        }, 500);
 
     }
 
     returnIfDisabled(){
         if(this.state.disabledButton === true ){
-            console.log("return");
             return false;
         } else {return true};
     }
@@ -125,13 +138,13 @@ export default class Simon extends React.Component {
                     playSequence={this.playSequence} addToSequence={this.addRandomColorToSequence}
                     increaseTurnCount={this.increaseTurnCount} start={this.state.start} won={this.youWon}
                     disabled={this.state.disabledButton} yourTurn={this.state.yourTurn} CPUTurn={this.itsNotYourTurn}
-                    return={this.returnIfDisabled}/>
+                    return={this.returnIfDisabled} strict={this.state.strict} reset={this.resetGame}/>
                 <div id="innerControls">
                     <Title />
-                    <div className="container">
+                    <div className="innerContainer">
                         <ScoreBox turnCount={this.state.turnCount} start={this.state.start}/>
-                        <StartBtn onClick={this.turnOn}/>
-                        <StrictBtn onClick={this.toggleStrict}/> 
+                        <StartBtn turnOn={this.turnOn}/>
+                        <StrictBtn toggleStrict={this.toggleStrict} strictLight={this.state.strict}/> 
                     </div>
                    
                 </div>

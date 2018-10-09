@@ -2,6 +2,7 @@ body{
     background: gray;
   }
   
+
   #game{
     margin: 100px auto;
     border: 10px solid #333;
@@ -13,6 +14,7 @@ body{
     overflow: hidden;
     position: relative;
   }
+
   
   #innerControls{
     margin: 80px;
@@ -26,7 +28,7 @@ body{
     border: 10px solid #333;
   }
   
-  .container{
+  .innerContainer{
     display: inline-block;
     margin-top: 25px;
   }
@@ -35,5 +37,34 @@ body{
     font-size: 42px;
     text-align: center;
   }
-  
+
+
+  @media only screen and (max-width: 400px){
+    #game {
+      margin: 100px auto;
+      border: 10px solid #333;
+      background-color: #333;
+      border-radius: 70%;
+      height: 300px;
+      width: 300px;
+      padding: 30px;
+      overflow: hidden;  
+    }  
+    #innerControls{
+        margin: 40px;
+        background-color: white;
+        border-radius: 50%;
+        height: 150px;
+        width: 150px;
+        padding: 30px;
+        overflow: hidden;
+        position: relative;
+        border: 10px solid #333;
+      }
+
+      #name{
+        font-size: 25px;
+        text-align: center;
+      }
+  } 
 

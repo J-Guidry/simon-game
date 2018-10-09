@@ -11,7 +11,6 @@ export default class Colors extends React.Component{
 
     onClick(e) {
         let block = this.props.return();
-        console.log(block);
         if(this.props.start === true && block){
             this.props.toggleColor(e.target.className);
             this.checkUserInput(e.target.className);
@@ -29,16 +28,13 @@ export default class Colors extends React.Component{
             () => this.isTurnOver());
 
         } else {
-            this.props.CPUTurn();
-            this.resetPlayerInputCount();
-            this.props.playSequence();
+          this.mismatch();
         }
     }
   
     isTurnOver(){
       let allCorrect = this.props.compSequence.length === this.state.playerInputCount;
       if(allCorrect === true){
-          console.log("triggered next one");
           this.resetPlayerInputCount();
           this.nextOne();
       } 
@@ -51,6 +47,17 @@ export default class Colors extends React.Component{
             this.props.increaseTurnCount();
             this.props.addToSequence();
             this.props.playSequence();
+        }
+    }
+
+    mismatch(){
+        if(this.props.strict === false){
+            this.props.CPUTurn();
+            this.resetPlayerInputCount();
+            this.props.playSequence();  
+        } else if(this.props.strict === true){
+            this.resetPlayerInputCount();           
+            this.props.reset();
         }
     }
 
